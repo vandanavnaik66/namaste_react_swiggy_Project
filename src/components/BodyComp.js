@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ResData } from "../../utility/mockData";
 import RestaurantCard from "./RestaurantCard";
 
 const BodyComp = () => {
-  const [ResList, setResList] = useState(ResData);
+  const [ResList, setResList] = useState([]);
+
+  useEffect(()=>{
+    fetchData();
+  },[])
+
+  const fetchData=async()=>{
+    let data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    let json=await data.json();
+    setResList(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
+
+  if(ResList.length === 0){
+    return <h3>Loading...........</h3>
+  }
 
   return (
     <>
@@ -17,7 +31,7 @@ const BodyComp = () => {
               setResList(filtedData);
             }}
           >
-            Filter Top Restaurants{" "}
+            Filter Top Restaurants
           </button>
         </div>
         <div className="res-card-container">
