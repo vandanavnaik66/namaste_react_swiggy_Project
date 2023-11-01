@@ -1,12 +1,11 @@
 import React from 'react'
 import Header from './Header';
-import BodyComp from './BodyComp';
-
+import { Outlet } from 'react-router-dom';
 function Main() {
   return (
     <div>
         <Header/>
-        <BodyComp/>
+        <Outlet/>
     </div>
   )
 }

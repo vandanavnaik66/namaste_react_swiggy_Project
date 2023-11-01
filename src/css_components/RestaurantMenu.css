@@ -1,0 +1,30 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.res-menu-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+.res-menu-inner-container{
+ width: 70%;
+ height: 100vh;
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+}
+.cuisine-style{
+    font-size: 11px;
+    font-weight: lighter;
+    color: rgb(130, 130, 130);
+}
+.menu-list{
+    font-size: 12px;
+    margin-top: 12px;
+}
+.menu-name{
+    margin-bottom: 5px;
+}

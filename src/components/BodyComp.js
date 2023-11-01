@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { ResData } from "../../utility/mockData";
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const BodyComp = () => {
   const [ResList, setResList] = useState([]);
   const [filteredRes, setFilteredRes] = useState([]);
   const[searchText,setSearchText]=useState("");
+
+
 
   useEffect(() => {
     fetchData();
@@ -16,7 +19,6 @@ const BodyComp = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     let json = await data.json();
-    console.log(json)
     setResList(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -26,17 +28,19 @@ const BodyComp = () => {
   };
 
   if (ResList.length === 0) {
-    return <h3>Loading...........</h3>;
+    return <Shimmer/>;
   }
+
+const promotedResList=promResList(RestaurantCard)
 
   return (
     <>
       <div className="bodyContainer">
-        <div className="searchContainer">
+        <div className="flex mb-5 mt-5 ">
           <div className="sub-container">
 
-          <input className="search-input" type="text" value={searchText} onChange={(e)=>setSearchText(e.target.value)} />
-          <button className="search-btn" 
+          <input className="border border-slate-500 rounded-md" type="text" value={searchText} onChange={(e)=>setSearchText(e.target.value)} />
+          <button className="px-8 py-1 text-sm rounded-lg bg-blue-300 ml-2"
           onClick={()=>{
             const filteredRes= ResList.filter((res)=>
               res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
@@ -51,9 +55,9 @@ const BodyComp = () => {
 
           <div className="sub-container">
           <button
-            className="filter-btn"
+            className="px-8 bg-blue-300 rounded-lg ml-2"
             onClick={() => {
-              let filtedData = ResList.filter(
+               filtedData = ResList.filter(
                 (res) => res.info.avgRating > 4.3
               );
               setResList(filtedData);
@@ -65,9 +69,9 @@ const BodyComp = () => {
           
       
         </div>
-        <div className="res-card-container">
+        <div className="flex flex-wrap gap-3">
           {filteredRes.map((restaurant) => (
-            <RestaurantCard key={restaurant.info.id} objProp={restaurant} />
+          <Link to={"/restaurant/" + restaurant.info.id} className="link">  <RestaurantCard key={restaurant.info.id} objProp={restaurant} /></Link>
           ))}
         </div>
       </div>
