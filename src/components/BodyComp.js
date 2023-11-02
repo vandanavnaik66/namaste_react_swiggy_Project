@@ -31,7 +31,6 @@ const BodyComp = () => {
     return <Shimmer/>;
   }
 
-const promotedResList=promResList(RestaurantCard)
 
   return (
     <>

@@ -24,7 +24,8 @@ const ResData=useRestaurantMenu(ResId);  // useRestaurantMenu take the ResId or
  
 
 const {name,cuisines,areaName}=ResData?.data?.cards[0]?.card?.card?.info;
-const{itemCards} =ResData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+const{itemCards} =ResData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+
 
   return (
     <>
@@ -39,6 +40,8 @@ const{itemCards} =ResData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.c
       </div>
       
       <h4 className="menu-list">{itemCards.map((item)=><li>{item.card.info.name}</li>)}</h4>
+     
+     
       </div>
       </div>
     </>
