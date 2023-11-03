@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useResListFetchApi from "../../utility/useResListFetchApi";
 
 const BodyComp = () => {
   const [ResList, setResList] = useState([]);
   const [filteredRes, setFilteredRes] = useState([]);
   const[searchText,setSearchText]=useState("");
-
 
 
   useEffect(() => {
@@ -30,7 +30,6 @@ const BodyComp = () => {
   if (ResList.length === 0) {
     return <Shimmer/>;
   }
-
 
   return (
     <>
@@ -56,16 +55,14 @@ const BodyComp = () => {
           <button
             className="px-8 bg-blue-300 rounded-lg ml-2"
             onClick={() => {
-               filtedData = ResList.filter(
-                (res) => res.info.avgRating > 4.3
+             let filtedData = ResList.filter((res) => res?.info?.avgRating >= 4.4
               );
-              setResList(filtedData);
+              setFilteredRes(filtedData);
             }}
           >
             Filter Top Restaurants
           </button>
           </div>
-          
       
         </div>
         <div className="flex flex-wrap gap-3">

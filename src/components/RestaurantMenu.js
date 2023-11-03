@@ -29,18 +29,13 @@ const{itemCards} =ResData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.c
 
   return (
     <>
-    <div className="res-menu-container">
-      <div className="res-menu-inner-container">
-      <div >
-      <h4 className="menu-name">{name}</h4>
-      </div>
-      <div className="menu-cuisine">
-      <h6 className="cuisine-style">{cuisines.join(",")}</h6>
-      <h6 className="cuisine-style">{areaName}</h6>
-      </div>
+    <div className="w-full h-screen flex justify-center">
+      <div className="w-9/12 flex flex-col items-start mt-5   bg-slate-600">
+      <h4 className="mt-5 ml-5">{name}</h4>
+      <h6 className="text-xs ml-5">{cuisines.join(",")}</h6>
+      <h6 className="text-xs ml-5">{areaName}</h6>
       
-      <h4 className="menu-list">{itemCards.map((item)=><li>{item.card.info.name}</li>)}</h4>
-     
+      <h4 className=" ml-5 mt-8 list-none">{itemCards.map((item)=><li>{item.card.info.name}</li>)}</h4>
      
       </div>
       </div>
