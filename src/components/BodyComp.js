@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import useResListFetchApi from "../../utility/useResListFetchApi";
+import { ResList_API } from "../../utility/constant.js";
 
 const BodyComp = () => {
   const [ResList, setResList] = useState([]);
@@ -15,9 +15,7 @@ const BodyComp = () => {
   }, []);
 
   const fetchData = async () => {
-    let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    let data = await fetch(ResList_API);
     let json = await data.json();
     setResList(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
