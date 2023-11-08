@@ -10,6 +10,7 @@ import RestaurantMenuCategory from "./RestaurantMenuCategory";
 const RestaurantMenu = () => {
  
   const {ResId} =useParams()
+  const[showIndex,setShowIndex]=useState(null);
 
 const ResData=useRestaurantMenu(ResId);  // useRestaurantMenu take the ResId or 
 // restaurant id of perticular restaurant and returns the restaurant details of that id
@@ -37,7 +38,11 @@ console.log(categories)
       <h4 className="mt-5  font-extrabold font-sans text-xl">{name}</h4>
       <h6 className="text-xs  text-gray-600 font-sans">{cuisines.join(",")}</h6>
       <h6 className="text-xs  text-gray-600 font-sans">{areaName}</h6>
-       {categories.map((category)=>(<RestaurantMenuCategory data={category?.card?.card}/>))}
+       {categories.map((category,index)=>(<RestaurantMenuCategory data={category?.card?.card} 
+       showItems={index===showIndex?true:false}
+       setShowIndex={()=>setShowIndex(index) }
+       
+       />))}
       </div>
       </div>
     </>

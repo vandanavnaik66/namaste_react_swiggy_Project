@@ -2,11 +2,11 @@ import { useState } from "react";
 import CategoryAccordionBody from "./CategoryAccordionBody";
 import { IoIosArrowDown } from "react-icons/Io";
 
-const RestaurantMenuCategory = ({ data }) => {
-const[showItems , setShowItems]=useState(false)
+const RestaurantMenuCategory = ({ data,showItems,setShowIndex,showIndex}) => {
 
   const handleFun=()=>{
-      setShowItems(!showItems)
+
+  setShowIndex();
   }
 
 
